@@ -120,12 +120,12 @@ fi
 
 if [ ! -d $FIRMWARE_DIR ]; then
   echo "**** CLONING FIRMWARE REPO ****"
-  git clone --depth 1 https://github.com/raspberrypi/firmware $FIRMWARE_DIR
+  git clone --depth 1 https://github.com/RPi-Distro/firmware $FIRMWARE_DIR
 fi
 
 if [ ! -d $DEBIAN_DIR ]; then
   echo "**** CLONING DEBIAN BUILD REPO ****"
-  git clone --depth 1 https://github.com/asb/firmware $DEBIAN_DIR
+  git clone --depth 1 https://github.com/RPi-Distro/firmware $DEBIAN_DIR
 fi
 
 # make sure tools dir is up to date
@@ -134,10 +134,12 @@ git pull
 
 # make sure firmware dir is up to date
 cd $FIRMWARE_DIR
+git checkout debian
 git pull
 
 # make sure debian package dir is up to date
 cd $DEBIAN_DIR
+git checkout debian
 git pull
 
 # pull together the debian package folder
